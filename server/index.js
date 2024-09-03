@@ -6,10 +6,10 @@ const connectDB = require('./utils/connectDB');
 const usersRouter = require('./router/user/usersRouter');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const cookieSession = require('cookie-session');
 const bcrypt = require('bcrypt');
 const cors = require('cors');
 const User = require('./models/User');
+const session = require('express-session');
 
 // connecting to mongodb
 connectDB();
@@ -25,10 +25,15 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-app.use(cookieSession({
-   name: 'app-auth',
-   keys: ['secret-new','secret-old'],
-   maxAge: 60 * 60 * 24
+// Replace cookieSession with express-session
+app.use(session({
+   secret: 'your-secret-key',
+   resave: false, // Forces session to be saved back to the store
+   saveUninitialized: false, // Don't create session until something stored
+   cookie: {
+      maxAge: 60 * 60 * 24 * 1000, // Session lasts 24 hours
+      secure: false // Set to true if using HTTPS
+   }
 }));
 
 app.use(express.json());
@@ -54,10 +59,10 @@ passport.deserializeUser(async (id, done)=>{
 })
 
 passport.use('local', new LocalStrategy({passReqToCallback: true},
-   async (req, username, passport, done)=>{
+   async (req, username, password, done)=>{
       console.log(`2. Local Strategy verify cb: ${JSON.stringify(username)}`);
       // this is where we call db to verify user
-      let user = await User.findOne(username);
+      let user = await User.findOne({email: username});
       if(!user){
          console.log('User not found');
          return done(null, false);
