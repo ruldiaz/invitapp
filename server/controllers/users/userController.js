@@ -1,5 +1,6 @@
 const User = require('../../models/User');
 const bcrypt = require('bcrypt');
+const passport = require('passport');
 
 const userController = {
    register: async (req, res)=>{
@@ -24,6 +25,14 @@ const userController = {
          message: 'User registered succesfully',
          userRegistered
       });
+   },
+   login: async (req, res, next)=>{
+      console.log(`1. Login handler: ${JSON.stringify(req.body)}`);
+      
+      passport.authenticate('local', (err, user)=>{
+         console.log(`3. Passport Authenticate cb: ${JSON.stringify(user)}`);
+         
+      })
    }
 }
 
