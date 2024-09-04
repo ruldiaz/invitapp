@@ -87,7 +87,42 @@ const userController = {
             code: 500
          })
       }
+   },
+   logout: async (req, res) => {
+      try {
+         // Passport's logout method
+         req.logout();
+   
+         // Destroy session
+         req.session.destroy((err) => {
+            if (err) {
+               return res.status(500).json({
+                  timestamp: Date.now(),
+                  msg: 'Failed to destroy session.',
+                  code: 500
+               });
+            }
+   
+            // Clear the cookie (optional)
+            res.clearCookie('connect.sid');
+   
+            return res.status(200).json({
+               timestamp: Date.now(),
+               message: 'Logout success.',
+               code: 200
+            });
+         });
+      } catch (error) {
+         console.error('Logout error:', error);
+         return res.status(500).json({
+            timestamp: Date.now(),
+            msg: 'Logout failed.',
+            code: 500
+         });
+      }
    }
+   
+   
 }
 
 
