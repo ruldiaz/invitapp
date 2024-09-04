@@ -120,8 +120,17 @@ const userController = {
             code: 500
          });
       }
+   },
+   inexistent: async (req, res)=>{
+      try {
+         res.status(404).json({
+            timestamps: Date.now(),
+            message: 'Endpoint not found'
+         })
+      } catch (error) {
+         throw new Error(error);
+      }
    }
-   
    
 }
 
