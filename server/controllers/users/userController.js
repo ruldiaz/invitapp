@@ -58,8 +58,37 @@ const userController = {
             
          })
       })(req, res, next)
+   },
+   get: async (req, res)=>{
+      try {
+         console.log(req.user.email);
+         
+         let user = await User.findOne({email: req.user.email})
+         if(!user){
+            return res.status(404).json({
+               timestamp: Date.now(),
+               msg: 'User not found.',
+               code: 404
+            });
+         }
+         res.status(200).json({
+            user: {
+               id: user.id,
+               email: user.email,
+               name: user.name
+            }
+         })
+      } catch (error) {
+         console.error(new Error(error.message));
+         res.status(500).json({
+            timestamps: Date.now(),
+            msg: 'Failed to get user, internal server error.',
+            code: 500
+         })
+      }
    }
 }
+
 
 
 module.exports = userController;
