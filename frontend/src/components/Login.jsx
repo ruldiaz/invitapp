@@ -68,7 +68,7 @@ export const Login = () => {
          </button>
 
          <p className="form-toggle">Don't have an auth app account?
-            <a href="./register.html">Register</a>
+            <a href="/register">Register</a>
          </p>
     </form>
    </>
