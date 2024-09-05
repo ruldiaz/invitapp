@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from 'react'
+import { useNavigate } from 'react-router-dom';
 
 export const Login = () => {
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
    const [errorMessage, setErrorMessage] = useState('');
+   const navigate = useNavigate();
 
    useEffect(() => {
       const urlParams = new URLSearchParams(window.location.search);
@@ -38,7 +40,7 @@ export const Login = () => {
   
         if (response.ok) {
           sessionStorage.setItem('isAuthenticated', true);
-          window.location.href = `${redirectTo}.jsx`;
+          navigate('/profile');
         } else {
           setErrorMessage(`Failed to login. ${msg ? msg : `Unknown error.`}`);
         }
