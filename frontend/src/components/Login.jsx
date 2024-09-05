@@ -1,0 +1,74 @@
+import React, {useEffect, useState} from 'react'
+
+export const Login = () => {
+   const [email, setEmail] = useState('');
+   const [password, setPassword] = useState('');
+   const [errorMessage, setErrorMessage] = useState('');
+
+   useEffect(() => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const emailParam = urlParams.get('email');
+      if (emailParam) {
+        setEmail(emailParam);
+      }
+    }, []);
+
+    const onFormSubmit = async (event) => {
+      event.preventDefault();
+  
+      if (!email || !password) {
+        setErrorMessage('Incomplete form. All fields required.');
+        return;
+      }
+  
+      try {
+        const response = await fetch('http://localhost:3000/api/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username: email,
+            password,
+          }),
+          credentials: 'include',
+        });
+  
+        const { msg, redirectTo } = await response.json();
+  
+        if (response.ok) {
+          sessionStorage.setItem('isAuthenticated', true);
+          window.location.href = `${redirectTo}.jsx`;
+        } else {
+          setErrorMessage(`Failed to login. ${msg ? msg : `Unknown error.`}`);
+        }
+      } catch (error) {
+        setErrorMessage(error?.message || 'Failed to login.');
+      }
+    };
+
+  return (
+   <>
+    <h1>Node.js Passport Auth App</h1>
+    <h2>Enter your details to login</h2>
+    <form onSubmit={onFormSubmit}>
+
+         <label htmlFor="email">Email</label>
+         <input type="email" id="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} /><br />
+
+         <label htmlFor="password">Password</label>
+         <input type="password" id="password" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)} />
+
+         <div id="error-message"></div>
+
+         <button type="submit" id="login-button">
+            <a>Login</a>
+         </button>
+
+         <p className="form-toggle">Don't have an auth app account?
+            <a href="./register.html">Register</a>
+         </p>
+    </form>
+   </>
+  )
+}
