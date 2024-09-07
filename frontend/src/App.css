@@ -1,0 +1,25 @@
+/* App.css */
+
+/* Reset default margin and padding */
+html, body {
+   margin: 0;
+   padding: 0;
+   width: 100%;
+   height: 100%;
+ }
+ 
+ /* Flex container for the main content */
+ body {
+   display: flex;
+   justify-content: center; /* Center horizontally */
+   align-items: center;     /* Center vertically */
+   background-color: #f4f4f4;
+   padding-top: 60px; /* Prevent content from being hidden behind the navbar */
+ }
+ 
+ /* Ensure the Routes component takes full width */
+ #root {
+   width: 100%;
+   height: 100%;
+ }
+ 

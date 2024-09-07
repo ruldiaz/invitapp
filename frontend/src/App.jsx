@@ -1,10 +1,10 @@
 import './App.css'
-import { Login } from './components/Login'
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import { Navbar } from './components/Navbar/Navbar';
 import Profile from './components/Profile';
 import Register from './components/Register';
-import { Landing } from './components/Landing';
+import { Landing } from './components/Landing/Landing';
+import { Login } from './components/Login/Login';
 
 function App() {
 

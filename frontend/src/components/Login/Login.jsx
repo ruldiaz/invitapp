@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom';
+import './Login.css';
 
 export const Login = () => {
    const [email, setEmail] = useState('');
@@ -51,6 +52,7 @@ export const Login = () => {
 
   return (
    <>
+   <div className='login-component'>
     <h1>Node.js Passport Auth App</h1>
     <h2>Enter your details to login</h2>
     <form onSubmit={onFormSubmit}>
@@ -71,6 +73,7 @@ export const Login = () => {
             <a href="/register">Register</a>
          </p>
     </form>
+    </div>
    </>
   )
 }
