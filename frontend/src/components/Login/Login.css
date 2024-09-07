@@ -56,12 +56,12 @@ html, body {
  }
  
  button a {
-   color: white;
+   color: rgb(201, 31, 31);
    text-decoration: none;
  }
  
  button:hover {
-   background-color: #555;
+   background-color: #722a2a;
  }
  
  .form-toggle {
