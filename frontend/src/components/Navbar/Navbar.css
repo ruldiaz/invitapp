@@ -1,0 +1,27 @@
+.navbar {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   padding: 10px 20px;
+   position: fixed;
+   top: 0; 
+   width: 100%;
+ }
+
+ul {
+   display: flex;
+   gap: 30px;
+   list-style-type: none; /* deletes the bullets */
+   margin: 0 auto;
+   padding: 0;
+   
+}
+
+li {
+   text-decoration: none;
+   
+}
+
+a:hover{
+   text-decoration: underline;
+}
