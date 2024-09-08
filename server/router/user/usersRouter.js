@@ -22,9 +22,10 @@ const requireAuth = (req, res, next)=>{
 }
 
 usersRouter.get('/user', requireAuth, userController.get);
-
 usersRouter.post('/logout', userController.logout);
 usersRouter.get('/check-auth', userController.checkAuth);
+usersRouter.put('/user/update',requireAuth ,userController.updateProfile);
+usersRouter.put('/user/update-password',requireAuth ,userController.updatePassword);
 usersRouter.all('*', userController.inexistent);
 
 module.exports = usersRouter;

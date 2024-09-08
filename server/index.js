@@ -6,11 +6,7 @@ const connectDB = require('./utils/connectDB');
 const usersRouter = require('./router/user/usersRouter');
 const passport = require('./utils/passport-local');
 const cors = require('cors');
-//const session = require('express-session');
 const cookieSession = require('cookie-session');
-
-// connecting to mongodb
-//connectDB();
 
 if (process.env.NODE_ENV !== 'test') {
    connectDB();

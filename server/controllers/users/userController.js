@@ -115,6 +115,52 @@ const userController = {
          });
       }
    },
+   // update user profile
+   updateProfile: async (req, res) => {
+      const { firstName, lastName } = req.body;
+      try {
+         const user = await User.findById(req.user.id);
+         if(!user){
+            return res.status(404).json({
+               msg: 'User not found.'
+            });
+         }
+         user.firstName = firstName || user.firstName;
+         user.lastName = lastName || user.lastName;
+
+         await user.save();
+         res.status(200).json({
+            msg: 'Profile updated succesfully'
+         });
+      } catch (error) {
+         res.status(500).json({
+            msg: 'Failed to update profile.',
+            error: error.message
+         });
+      }
+   },
+   // update password
+   updatePassword: async (req, res) => {
+      const { password } = req.body;
+      try {
+         const user = await User.findById(req.user.id);
+         if(!user){
+            return res.status(404).json({
+               msg: 'User not found.'
+            });
+         }
+         const hashedPasword = await bcrypt.hash(password, 10);
+         user.password = hashedPasword;
+         await user.save();
+         res.status(200).json({
+            msg: 'Passwor updated succesfully.'
+         });
+      } catch (error) {
+         res.status(500).json({
+            msg: 'Failed to update password'
+         });    
+      }
+   },
    // inexistent routes method
    inexistent: async (req, res)=>{
       try {
