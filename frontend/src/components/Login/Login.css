@@ -46,8 +46,8 @@ html, body {
  
  button {
    padding: 10px 20px;
-   background-color: #333;
-   color: white;
+   background-color: #352222;
+   color: rgb(196, 156, 156);
    border: none;
    border-radius: 5px;
    cursor: pointer;
@@ -61,7 +61,7 @@ html, body {
  }
  
  button:hover {
-   background-color: #722a2a;
+   background-color: #0d3269;
  }
  
  .form-toggle {
