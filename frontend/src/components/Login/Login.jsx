@@ -1,12 +1,15 @@
 import React, {useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
+import { useDispatch } from 'react-redux';
+import { loginSuccess } from '../../redux/authSlice';
 
 export const Login = () => {
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
    const [errorMessage, setErrorMessage] = useState('');
    const navigate = useNavigate();
+   const dispatch = useDispatch();
 
    useEffect(() => {
       const urlParams = new URLSearchParams(window.location.search);
@@ -40,6 +43,7 @@ export const Login = () => {
         const { msg, redirectTo } = await response.json();
   
         if (response.ok) {
+          dispatch(loginSuccess());
           sessionStorage.setItem('isAuthenticated', true);
           navigate('/profile');
         } else {
