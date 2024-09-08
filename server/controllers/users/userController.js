@@ -92,8 +92,17 @@ const userController = {
       try {
          // Passport's logout method
          req.logout();
-   
+
+         req.session = null;
+         res.clearCookie('app-auth');
+
+         return res.status(200).json({
+            timestamp: Date.now(),
+            message: 'Logout success.',
+            code: 200
+         });
          // Destroy session
+         /*
          req.session.destroy((err) => {
             if (err) {
                return res.status(500).json({
@@ -102,7 +111,7 @@ const userController = {
                   code: 500
                });
             }
-   
+         
             // Clear the cookie (optional)
             res.clearCookie('connect.sid');
    
@@ -112,6 +121,7 @@ const userController = {
                code: 200
             });
          });
+         */
       } catch (error) {
          console.error('Logout error:', error);
          return res.status(500).json({
@@ -130,7 +140,14 @@ const userController = {
       } catch (error) {
          throw new Error(error);
       }
-   }
+   },
+   checkAuth: async (req, res) => {
+      if (req.isAuthenticated()) {
+        return res.status(200).json({ isAuthenticated: true });
+      } else {
+        return res.status(200).json({ isAuthenticated: false });
+      }
+    },
    
 }
 

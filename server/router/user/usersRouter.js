@@ -24,6 +24,7 @@ const requireAuth = (req, res, next)=>{
 usersRouter.get('/user', requireAuth, userController.get);
 
 usersRouter.post('/logout', userController.logout);
+usersRouter.get('/check-auth', userController.checkAuth);
 usersRouter.all('*', userController.inexistent);
 
 module.exports = usersRouter;

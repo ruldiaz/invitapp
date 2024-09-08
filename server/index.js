@@ -9,8 +9,8 @@ const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 const cors = require('cors');
 const User = require('./models/User');
-const session = require('express-session');
-const MongoDBStore = require('connect-mongodb-session')(session);
+//const session = require('express-session');
+const cookieSession = require('cookie-session');
 
 // connecting to mongodb
 connectDB();
@@ -27,14 +27,21 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // Replace cookieSession with express-session
+/*
 app.use(session({
-   secret: 'your-secret-key',
+   secret: 'app-auth',
    resave: false, // Forces session to be saved back to the store
    saveUninitialized: false, // Don't create session until something stored
    cookie: {
       maxAge: 60 * 60 * 24 * 1000, // Session lasts 24 hours
       secure: false, // Set to true if using HTTPS 
    }
+}));
+*/
+app.use(cookieSession({
+   name: 'app-auth',
+   keys: ['secret-new','secret-old'],
+   maxAge: 60 * 60 * 24
 }));
 
 app.use(express.json());
