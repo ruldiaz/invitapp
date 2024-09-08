@@ -27,14 +27,14 @@ export const Login = () => {
       try {
         const response = await fetch('http://localhost:3000/api/login', {
           method: 'POST',
+          credentials: 'include',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
             username: email,
             password,
-          }),
-          credentials: 'include',
+          })
         });
   
         const { msg, redirectTo } = await response.json();
@@ -66,7 +66,7 @@ export const Login = () => {
          <div id="error-message">{errorMessage}</div>
 
          <button type="submit" id="login-button">
-            <a>Login</a>
+            Login
          </button>
 
          <p className="form-toggle">Don't have an auth app account?
