@@ -5,9 +5,7 @@ const app = express();
 const connectDB = require('./utils/connectDB');
 const usersRouter = require('./router/user/usersRouter');
 const passport = require('./utils/passport-local');
-const bcrypt = require('bcrypt');
 const cors = require('cors');
-const User = require('./models/User');
 //const session = require('express-session');
 const cookieSession = require('cookie-session');
 

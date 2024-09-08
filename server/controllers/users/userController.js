@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const passport = require('passport');
 
 const userController = {
+   // register new user method
    register: async (req, res)=>{
       const {firstName, lastName, email, password} = req.body;
 
@@ -26,7 +27,8 @@ const userController = {
          userRegistered
       });
    },
-   login: async (req, res, next)=>{
+   // login method
+   login: async (req, res, next)=>{ 
       console.log(`1. Login handler: ${JSON.stringify(req.body)}`);
       
       passport.authenticate('local', (err, user)=>{
@@ -59,6 +61,7 @@ const userController = {
          })
       })(req, res, next)
    },
+   // get user method
    get: async (req, res)=>{
       try {
          console.log(req.user.email);
@@ -88,6 +91,7 @@ const userController = {
          })
       }
    },
+   // logout method
    logout: async (req, res) => {
       try {
          // Passport's logout method
@@ -111,6 +115,7 @@ const userController = {
          });
       }
    },
+   // inexistent routes method
    inexistent: async (req, res)=>{
       try {
          res.status(404).json({
@@ -121,6 +126,7 @@ const userController = {
          throw new Error(error);
       }
    },
+   // validate auth method
    checkAuth: async (req, res) => {
       if (req.isAuthenticated()) {
         return res.status(200).json({ isAuthenticated: true });
