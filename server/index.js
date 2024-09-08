@@ -13,9 +13,22 @@ const User = require('./models/User');
 const cookieSession = require('cookie-session');
 
 // connecting to mongodb
-connectDB();
+//connectDB();
+
+if (process.env.NODE_ENV !== 'test') {
+   connectDB();
+ }
+
+ // Load different environment variables depending on NODE_ENV
+if (process.env.NODE_ENV === 'test') {
+   dotenv.config({ path: '.env.test' });
+ } else {
+   dotenv.config();
+ }
 
 const PORT = process.env.PORT || 3000;
+
+
 
 const corsOptions = {
    origin: ['http://localhost:9000','http://localhost:5173'],
@@ -96,4 +109,12 @@ passport.use('local', new LocalStrategy({passReqToCallback: true},
 
 app.use('/api', usersRouter);
 
-app.listen(PORT, console.log(`Server running on port ${PORT}`));
+//app.listen(PORT, console.log(`Server running on port ${PORT}`));
+// Start the server if not in test environment
+if (process.env.NODE_ENV !== 'test') {
+   app.listen(PORT, () => {
+     console.log(`Server running on port ${PORT}`);
+   });
+ }
+
+ module.exports = app;
