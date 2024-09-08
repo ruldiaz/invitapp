@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Register.css';
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -46,6 +47,7 @@ const Register = () => {
 
   return (
     <>
+    <div className='register-component'>
       <h1>Node.js Passport Auth App</h1>
       <div className="auth-app-form">
         <h2>Register for the auth app</h2>
@@ -94,6 +96,7 @@ const Register = () => {
             Already have an account? <a href="/login">Login</a>
           </p>
         </form>
+      </div>
       </div>
     </>
   );
