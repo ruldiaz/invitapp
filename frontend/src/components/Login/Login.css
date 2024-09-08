@@ -15,7 +15,7 @@ html, body {
    flex-direction: column;
    justify-content: center;
    align-items: center;
-   height: 100vh;
+   height: 80vh;
    background-color: #f4f4f4;
    padding-top: 60px; /* Push content down so it's below the navbar */
  }

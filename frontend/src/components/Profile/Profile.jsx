@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Profile.css';
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -50,7 +51,8 @@ const Profile = () => {
 console.log(user);
 
   return (
-    <div id="user-info">
+
+    <div className='profile-component' id="user-info">
       <p>First name: {user.firstName}</p>
       <p>Last name: {user.lastName}</p>
       <p>Email: {user.email}</p>
