@@ -63,7 +63,7 @@ export const Login = () => {
          <label htmlFor="password">Password</label>
          <input type="password" id="password" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)} />
 
-         <div id="error-message"></div>
+         <div id="error-message">{errorMessage}</div>
 
          <button type="submit" id="login-button">
             <a>Login</a>
