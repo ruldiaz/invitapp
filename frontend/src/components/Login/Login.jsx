@@ -73,7 +73,7 @@ export const Login = () => {
             Login
          </button>
          <button onClick={() => window.location.href = 'http://localhost:3000/api/auth/google'}>
-            Login with Google
+            Google Sign in
          </button>
 
 
