@@ -1,6 +1,7 @@
 const express = require('express');
 const userController = require('../../controllers/users/userController');
 
+const passport = require('passport');
 const usersRouter = express.Router();
 
 usersRouter.post('/register', userController.register);
@@ -20,6 +21,24 @@ const requireAuth = (req, res, next)=>{
       })
    }
 }
+
+// Initiating Google authentication
+usersRouter.get(
+   '/auth/google',
+   passport.authenticate('google', {
+      scope: ['profile', 'email'],
+   })
+);
+
+// Google OAuth Callback Route
+usersRouter.get(
+   '/auth/google/callback',
+   passport.authenticate('google', { failureRedirect: '/login' }),
+   (req, res) => {
+     // Redirect to frontend profile page after successful authentication
+     res.redirect('http://localhost:5173/profile');
+   }
+ );
 
 usersRouter.get('/user', requireAuth, userController.get);
 usersRouter.post('/logout', userController.logout);

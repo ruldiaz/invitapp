@@ -72,6 +72,10 @@ export const Login = () => {
          <button type="submit" id="login-button">
             Login
          </button>
+         <button onClick={() => window.location.href = 'http://localhost:3000/api/auth/google'}>
+            Login with Google
+         </button>
+
 
          <p className="form-toggle">Don't have an auth app account?
             <a href="/register">Register</a>
