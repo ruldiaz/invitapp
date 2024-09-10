@@ -7,7 +7,14 @@ const userController = {
    register: async (req, res)=>{
       const {firstName, lastName, email, password} = req.body;
 
-      const userFound = await User.findOne({firstName, lastName, email});
+      if (!firstName || !lastName || !email || !password) {
+         return res.status(400).json({
+            status: 'error',
+            message: 'Missing required fields'
+         });
+      }
+
+      const userFound = await User.findOne({email});
       if(userFound){
          throw new Error('User already exists');
       }
@@ -149,8 +156,8 @@ const userController = {
                msg: 'User not found.'
             });
          }
-         const hashedPasword = await bcrypt.hash(password, 10);
-         user.password = hashedPasword;
+         const hashedPassword = await bcrypt.hash(password, 10);
+         user.password = hashedPassword;
          await user.save();
          res.status(200).json({
             msg: 'Passwor updated succesfully.'

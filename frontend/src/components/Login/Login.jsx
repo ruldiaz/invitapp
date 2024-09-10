@@ -76,6 +76,9 @@ export const Login = () => {
             Google Sign in
          </button>
 
+         <button onClick={() => window.location.href = 'http://localhost:3000/api/auth/github'}>
+            GitHub Sign in
+         </button>
 
          <p className="form-toggle">Don't have an auth app account?
             <a href="/register">Register</a>

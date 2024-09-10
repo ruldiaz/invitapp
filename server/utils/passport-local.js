@@ -1,6 +1,7 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const GitHubStrategy = require('passport-github2').Strategy;
 const bcrypt = require('bcrypt');
 const User = require('../models/User');
 
@@ -57,6 +58,32 @@ passport.use(
     }
   )
 );
+
+// GitHub Strategy
+passport.use(new GitHubStrategy(
+  {
+    clientID: process.env.GITHUB_CLIENT_ID,
+    clientSecret: process.env.GITHUB_CLIENT_SECRET,
+    callbackURL: '/api/auth/github/callback',
+  },
+  async (accessToken, refreshToken, profile, done) => {
+    console.log('GitHub profile:', profile);
+    try {
+      let user = await User.findOne({githubId: profile.id});
+      if(!user){
+        user = await User.create({
+          githubId: profile.id,
+          email: (profile.emails && profile.emails.length > 0 ? profile.emails[0].value : ''),
+          firstName: profile.displayName || profile.username || '',
+          lastName: ''
+        });
+      }
+      done(null, user);
+    } catch (error) {
+      done(error, null);
+    }
+  }
+));
 
 // Serialization and Deserialization for both strategies
 passport.serializeUser((user, done) => {

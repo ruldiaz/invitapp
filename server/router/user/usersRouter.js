@@ -40,6 +40,20 @@ usersRouter.get(
    }
  );
 
+// GitHub login route
+usersRouter.get('/auth/github', passport.authenticate('github', { scope: ['user:email'] }));
+
+// GitHub callback route
+usersRouter.get(
+  '/auth/github/callback',
+  passport.authenticate('github', { failureRedirect: '/login' }),
+  (req, res) => {
+    // Successful authentication
+    res.redirect('http://localhost:5173/profile');
+  }
+);
+
+
 usersRouter.get('/user', requireAuth, userController.get);
 usersRouter.post('/logout', userController.logout);
 usersRouter.get('/check-auth', userController.checkAuth);
