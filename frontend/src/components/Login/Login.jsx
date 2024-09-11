@@ -72,7 +72,7 @@ export const Login = () => {
          <button type="submit" id="login-button">
             Login
          </button>
-         <button type="submit" id="login-button">
+         <button type="submit" className="login-button">
             Did you forget your password?
          </button>
          <button onClick={() => window.location.href = 'http://localhost:3000/api/auth/google'}>
