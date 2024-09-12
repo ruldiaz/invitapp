@@ -61,10 +61,10 @@ export const Login = () => {
     <h2>Enter your details to login</h2>
     <form onSubmit={onFormSubmit}>
 
-         <label htmlFor="email">Email</label>
+         <label htmlFor="email">Email:</label>
          <input type="email" id="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} /><br />
 
-         <label htmlFor="password">Password</label>
+         <label htmlFor="password">Password:</label>
          <input type="password" id="password" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)} />
 
          <div id="error-message">{errorMessage}</div>

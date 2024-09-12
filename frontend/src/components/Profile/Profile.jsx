@@ -85,7 +85,7 @@ const Profile = () => {
       });
 
       if (response.ok) {
-        alert('Password updated successfully');
+        alert('Password updated successfully.');
         setPassword('');
       } else {
         const { msg } = await response.json(); // Ensure to await this
