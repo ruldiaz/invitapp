@@ -63,7 +63,7 @@ class Server {
     // Start the server if not in test environment
     if (process.env.NODE_ENV !== 'test') {
       this.app.listen(PORT, () => {
-        console.log(`Server running on port ${PORT}`);
+        console.log(`Server running on port: ${PORT}`);
       });
     }
   }
