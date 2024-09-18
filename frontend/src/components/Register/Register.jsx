@@ -38,7 +38,7 @@ const Register = () => {
         alert('Registration successful! Please login.');
         navigate('/login'); // Redirect to login page after successful registration
       } else {
-        setErrorMessage(data.msg || 'Registration failed.');
+        setErrorMessage(data.message || 'Registration failed.');
       }
     } catch (error) {
       setErrorMessage(error?.message || 'Failed to register.');

@@ -16,7 +16,12 @@ class UserController {
 
     const userFound = await User.findOne({ email });
     if (userFound) {
-      throw new Error('User already exists');
+      //throw new Error('User already exists');
+      return res.status(400).json({
+        status: 'error',
+        message: 'User already exists',
+        code: 400
+      });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
