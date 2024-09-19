@@ -4,7 +4,7 @@ import './Landing.css';
 export const Landing = () => {
   return (
     <div className='landing-component'>
-      <h1>Landing page</h1>
+      <h1>Welcome to InvitApp</h1>
     </div>
   )
 }
