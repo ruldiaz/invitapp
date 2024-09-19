@@ -6,6 +6,12 @@
    position: fixed;
    top: 0; 
    width: 100%;
+   background-color: rgb(74, 6, 95);
+   
+ }
+
+ .navbar a {
+   color: aliceblue;
  }
 
 ul {
@@ -22,6 +28,7 @@ li {
    
 }
 
-a:hover{
+.navbar a:hover{
    text-decoration: underline;
+   color: aqua;
 }
