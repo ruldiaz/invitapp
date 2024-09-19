@@ -6,6 +6,7 @@ import { Login } from './components/Login/Login';
 import Profile from './components/Profile/Profile';
 import Register from './components/Register/Register';
 import { Logout } from './components/Logout/Logout';
+import { Catalog } from './components/Catalog/Catalog';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Route element={<Logout />} path='/logout' ></Route>
         <Route element={<Profile />} path='/profile' />
         <Route element={<Register />} path='/register' />
+        <Route element={<Catalog />} path='/catalog' />
       </Routes>
     </BrowserRouter>
   )

@@ -1,0 +1,13 @@
+.catalog-component {
+   display: flex;
+   justify-content: center; /* Center horizontally */
+   align-items: center;     /* Center vertically */
+   height: 100vh;           /* Full viewport height */
+   background-color: #f4f4f4; /* Optional: background color for better visibility */
+ }
+ 
+ h1 {
+   margin: 0;               /* Remove default margin */
+   font-size: 2rem;         /* Adjust font size as needed */
+ }
+ 
