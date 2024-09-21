@@ -40,14 +40,15 @@ export const Login = () => {
           })
         });
   
-        const { msg, redirectTo } = await response.json();
+        const data = await response.json();
   
         if (response.ok) {
           dispatch(loginSuccess());
           sessionStorage.setItem('isAuthenticated', true);
+          localStorage.setItem('userId', data.userId);
           navigate('/profile');
         } else {
-          setErrorMessage(`Failed to login. ${msg ? msg : `Unknown error.`}`);
+          setErrorMessage(`Failed to login. ${data.msg ? data.msg : `Unknown error.`}`);
         }
       } catch (error) {
         setErrorMessage(error?.message || 'Failed to login.');

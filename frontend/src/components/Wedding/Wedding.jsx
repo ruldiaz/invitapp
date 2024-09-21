@@ -8,8 +8,51 @@ export class Wedding extends Component {
          novio: '',
          novia: '',
          fechaBoda: '',
-         horarioBoda: ''
+         horarioBoda: '',
+         message: ''
       }
+   }
+
+   handleSubmit = async (event)=>{
+      event.preventDefault();
+      const {novio, novia, fechaBoda, horarioBoda} = this.state;
+      const userId = localStorage.getItem('userId');
+      console.log('Retrieved User ID:', userId);
+
+
+      // prepare the request body
+      const requestBody = {
+         userId,
+         designName: 'Elegant',
+         price: 100,
+         image: 'wedding-url',
+         groomName: novio,
+         brideName: novia,
+         date: fechaBoda,
+         time: horarioBoda
+      }
+      
+      try {
+         const response = await fetch('http://localhost:3000/weddings', {
+            method: 'POST',
+            headers: {
+               'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(requestBody),
+         });
+
+         const data = await response.json();
+
+         if(response.ok){
+            this.setState({message: 'Wedding registered succesfully!'});
+         }else{
+            this.setState({message: data.message || 'Failed to register wedding.'});
+         }
+      } catch (error) {
+         this.setState({message: 'An error occurred: ' + error.message});
+      }
+
+
    }
 
    handleInputChange = (event)=>{
@@ -22,7 +65,7 @@ export class Wedding extends Component {
    render() {
       return (
          <div className="wedding-component">       
-           <form>
+           <form onSubmit={this.handleSubmit}>
                <label htmlFor="novio">Nombre del novio: </label>
                <input id="novio" 
                       type="text" 
@@ -51,6 +94,7 @@ export class Wedding extends Component {
                       name='horarioBoda'
                       value={this.state.horarioBoda}
                       onChange={this.handleInputChange} />
+                      <button type='submit'>Register Wedding</button>
            </form>
            <p>Nombre del novio: {this.state.novio}</p>
            <p>Nombre de la novia: {this.state.novia}</p>

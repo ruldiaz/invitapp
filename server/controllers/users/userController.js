@@ -69,6 +69,7 @@ class UserController {
         console.log('User logged in:', req.user);
         return res.status(200).json({
           redirectTo: '/profile',
+          userId: user._id
         });
       });
     })(req, res, next);
