@@ -39,6 +39,7 @@ export const Navbar = () => {
         )}
         {isAuthenticated && (
           <>
+            <li><Link to='/wedding'>Wedding</Link></li>
             <li><Link to='/profile'>Profile</Link></li>
             <li><Link to='/logout'>Logout</Link></li>
           </>
