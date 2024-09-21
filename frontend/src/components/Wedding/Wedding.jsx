@@ -96,10 +96,7 @@ export class Wedding extends Component {
                       onChange={this.handleInputChange} />
                       <button type='submit'>Register Wedding</button>
            </form>
-           <p>Nombre del novio: {this.state.novio}</p>
-           <p>Nombre de la novia: {this.state.novia}</p>
-           <p>Fecha de la boda: {this.state.fechaBoda}</p>
-           <p>Horario de la boda: {this.state.horarioBoda}</p>
+           {this.state.message && <p>{this.state.message}</p>}
          </div>
        )
    }
