@@ -7,6 +7,7 @@ import Profile from './components/Profile/Profile';
 import Register from './components/Register/Register';
 import { Logout } from './components/Logout/Logout';
 import { Catalog } from './components/Catalog/Catalog';
+import { Wedding } from './components/Wedding/Wedding';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
         <Route element={<Profile />} path='/profile' />
         <Route element={<Register />} path='/register' />
         <Route element={<Catalog />} path='/catalog' />
+        <Route element={<Wedding />} path='/wedding' />
       </Routes>
     </BrowserRouter>
   )

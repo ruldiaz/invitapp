@@ -6,6 +6,7 @@ const usersRouter = require('./router/user/usersRouter');
 const passport = require('./utils/passport-local');
 const cors = require('cors');
 const cookieSession = require('cookie-session');
+const weddingRouter = require('./router/wedding/weddingRouter');
 
 class Server {
   constructor(){
@@ -50,6 +51,7 @@ class Server {
   configureRoutes(){
   // route handlers
     this.app.use('/api', usersRouter);
+    this.app.use('/weddings', weddingRouter)
   }
 
   connectDatabase(){
