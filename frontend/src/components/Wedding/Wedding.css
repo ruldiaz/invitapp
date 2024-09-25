@@ -7,3 +7,7 @@
    background-color: #f4f4f4;
    padding-top: 60px; /* Push content down so it's below the navbar */
  }
+
+ .wedding-message {
+  color: red;
+ }

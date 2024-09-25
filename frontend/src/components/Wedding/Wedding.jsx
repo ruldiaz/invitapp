@@ -96,7 +96,7 @@ export class Wedding extends Component {
                       onChange={this.handleInputChange} />
                       <button type='submit'>Register Wedding</button>
            </form>
-           {this.state.message && <p>{this.state.message}</p>}
+           {this.state.message && <p className='wedding-message'>{this.state.message}</p>}
          </div>
        )
    }
