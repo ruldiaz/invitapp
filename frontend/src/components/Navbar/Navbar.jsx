@@ -30,7 +30,7 @@ export const Navbar = () => {
     <nav className="navbar">
       <ul>
         <li><Link to='/'>| Home |</Link></li>
-        <li><Link to='/catalog'>Catalog</Link></li>
+        <li><Link to='/catalog'>| Catalog |</Link></li>
         {!isAuthenticated && (
           <>
             <li><Link to='/login'>Login</Link></li>
